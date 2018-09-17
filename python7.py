@@ -1,1 +1,1 @@
-print('Hello, world!')
+p('Hello, world!')
