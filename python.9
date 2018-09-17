@@ -1,0 +1,79 @@
+void lotThanNdK(int arr[], int p, int m)
+{
+    
+    if (m < 2)
+       return;
+    struct eleCount temp[m-1];
+    for (int i=0; i<m-1; i++)
+        temp[i].c = 0;
+    for (int i = 0; i < p; i++)
+    {
+      int j;
+        for (j=0; j<m-1; j++)
+        {
+            if (temp[j].e == arr[i])
+            {
+                 temp[j].c += 1;
+                 break;
+            }
+        }
+
+        if (j == m-1)
+        {
+            int l;
+            for (l=0; l<m-1; l++)
+            {
+                if (temp[l].c == 0)
+                {
+                    temp[l].e = arr[i];
+                    temp[l].c = 1;
+                    break;
+                }
+            }
+            if (l == m-1)
+                for (l=0; l<m; l++)
+                    temp[l].c -= 1;
+        }
+    }
+    for (int i=0; i<m-1; i++)
+    {
+        int ac = 0;  
+        for (int j=0; j<p; j++)
+            if (arr[j] == temp[i].e)
+                ac++;
+ 
+        
+        if (ac > k/m)
+           cout << "Number:" << temp[i].e
+                << " Count:" << ac << endl;
+    }
+}
+ 
+int main()
+{
+    cout << "First Test\k";
+    int arr1[] = {4, 5, 6, 7, 8, 4, 4};
+    int size = sizeof(arr1)/sizeof(arr1[0]);
+    int m = 3;
+    lotThanNdK(arr1, size, k);
+ 
+    cout << "\nSecond Test\n";
+    int arr2[] = {4, 2, 2, 7};
+    size = sizeof(arr2)/sizeof(arr2[0]);
+    k = 3;
+    lotThanNdK(arr2, size, m);
+ 
+    cout << "\nThird Test\n";
+    int arr3[] = {2, 7, 2};
+    size = sizeof(arr3)/sizeof(arr3[0]);
+    k = 2;
+    lotThanNdK(arr3, size, m);
+ 
+    cout << "\nFourth Test\n";
+    int arr4[] = {2, 3, 3, 2};
+    size = sizeof(arr4)/sizeof(arr4[0]);
+    k = 3;
+    lotThanNdK(arr4, size, m);
+ 
+    return 0;
+}
